@@ -34,9 +34,9 @@ ingredients_list = st.multiselect (
     
 )
 
-ingredients_string = ''
-
 if ingredients_list:
+
+    ingredients_string = ''
 
     for fruit_chosen in ingredients_list:
         ingredients_string += fruit_chosen + ' '
@@ -50,14 +50,14 @@ if ingredients_list:
         
         st.write(ingredients_string) 
     
-#     my_insert_stmt = """ insert into smoothies.public.orders(name, ingredients)
-#         values ('""" + ingredients_string + """', '""" + name_on_order + """')"""
+    my_insert_stmt = """ insert into smoothies.public.orders(name, ingredients)
+        values ('""" + ingredients_string + """', '""" + name_on_order + """')"""
 
-# time_to_insert = st.button('submit order')
-
-# if ingredients_string:
-#     session.sql(my_insert_stmt).collect()
-#     st.success('Your Smoothie is ordered!', icon="✅")
+    time_to_insert = st.button('submit order')
+    
+    if ingredients_string:
+        session.sql(my_insert_stmt).collect()
+        st.success('Your Smoothie is ordered!', icon="✅")
 
 
 
