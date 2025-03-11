@@ -1,3 +1,16 @@
+# Import python packages
+import streamlit as st
+from snowflake.snowpark.functions import col
+
+
+from snowflake.snowpark.context import get_active_session
+
+helpful_links = [
+    "https://docs.streamlit.io",
+    "https://docs.snowflake.com/en/developer-guide/streamlit/about-streamlit",
+    "https://github.com/Snowflake-Labs/snowflake-demo-streamlit",
+    "https://docs.snowflake.com/en/release-notes/streamlit-in-snowflake"
+]
 
 # Write directly to the app
 st.title("Example Streamlit App :balloon:")
@@ -21,8 +34,8 @@ import streamlit as st
 name_on_order = st.text_input("name on smoothie")
 st.write("The name on your smoothie will be :", name_on_order)
 
-
-session = get_active_session()
+cnx = st.connection ("snowflake")
+session = cnx.session()
 my_dataframe = session.table("smoothies.public.fruit_options").select(col('fruit_name'))
 st.dataframe(data=my_dataframe, use_container_width=True)
 
