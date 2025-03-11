@@ -37,10 +37,9 @@ ingredients_list = st.multiselect (
 if ingredients_list:
   
     
-   ingredients_string = ''
-    
-   for fruit_chosen in ingredients_list:
-       ingredients_string += fruit_chosen + ' '
+    ingredients_string = ''
+    for fruit_chosen in ingredients_list:
+        ingredients_string += fruit_chosen + ' '
 
        search_on=pd_df.loc[pd_df['FRUIT_NAME'] == fruit_chosen, 'SEARCH_ON'].iloc[0]
        #st.write('The search value for ', fruit_chosen,' is ', search_on, '.')
@@ -56,10 +55,10 @@ if ingredients_list:
 
 
 
-    time_to_insert = st.button('submit order')
-    if ingredients_string:
-        session.sql(my_insert_stmt).collect()
-        st.success('Your Smoothie is ordered!', icon="✅")
+time_to_insert = st.button('submit order')
+if ingredients_string:
+    session.sql(my_insert_stmt).collect()
+    st.success('Your Smoothie is ordered!', icon="✅")
 
 
 
